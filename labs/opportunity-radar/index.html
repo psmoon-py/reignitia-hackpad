@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>Opportunity Radar - ReIgnitia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body data-page="lab-opportunity-radar">
+    <div class="starfield-background"></div>
+    <div class="main-wrapper">
+        <header class="header">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo/reignitia_flame_lightbulb.png" alt="ReIgnitia" class="logo-icon">
+                    <span class="logo-text">Re<span class="logo-highlight">I</span>gnitia</span>
+                </a>
+                <a href="/dashboard/" class="nav-link">Dashboard</a>
+            </nav>
+        </header>
+        <main class="lab-main">
+            <div class="lab-header">
+                <h1 class="lab-title">🎯 Opportunity Radar</h1>
+                <p class="lab-subtitle">Discover STEM competitions, hackathons, and fairs before deadlines.</p>
+            </div>
+            <div class="lab-content">
+                <div class="filter-group">
+                    <label>Level:
+                        <select id="levelFilter">
+                            <option value="all">All</option>
+                            <option value="school">School</option>
+                            <option value="undergrad">Undergrad</option>
+                            <option value="all-ages">All Ages</option>
+                        </select>
+                    </label>
+                    <label>Field:
+                        <select id="fieldFilter">
+                            <option value="all">All</option>
+                            <option value="stem">STEM</option>
+                            <option value="cs">CS/Tech</option>
+                            <option value="space">Space/Astro</option>
+                        </select>
+                    </label>
+                    <label>Region:
+                        <select id="regionFilter">
+                            <option value="all">All</option>
+                            <option value="global">Global</option>
+                            <option value="india">India</option>
+                            <option value="asia">Asia</option>
+                        </select>
+                    </label>
+                    <label><input type="checkbox" id="freeOnlyFilter"> Free only</label>
+                </div>
+                <div id="opportunityResults" class="results-grid"></div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/app.js" defer></script>
+</body>
+</html>

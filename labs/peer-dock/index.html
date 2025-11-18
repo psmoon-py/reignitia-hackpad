@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>Peer Dock - ReIgnitia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body data-page="lab-peer-dock">
+    <div class="starfield-background"></div>
+    <div class="main-wrapper">
+        <header class="header">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo/reignitia_flame_lightbulb.png" alt="ReIgnitia" class="logo-icon">
+                    <span class="logo-text">Re<span class="logo-highlight">I</span>gnitia</span>
+                </a>
+                <a href="/dashboard/" class="nav-link">Dashboard</a>
+            </nav>
+        </header>
+        <main class="lab-main">
+            <div class="lab-header">
+                <h1 class="lab-title">👥 Peer Dock</h1>
+                <p class="lab-subtitle">Connect with existing free learning communities. No new platform needed.</p>
+            </div>
+            <div class="lab-content">
+                <div class="filter-group">
+                    <label>Focus Area:
+                        <select id="focusFilter">
+                            <option value="all">All</option>
+                            <option value="cs">CS/Programming</option>
+                            <option value="math">Math</option>
+                            <option value="physics">Physics</option>
+                            <option value="stem">General STEM</option>
+                            <option value="olympiad">Olympiad</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="communityResults" class="results-grid"></div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/app.js" defer></script>
+</body>
+</html>
