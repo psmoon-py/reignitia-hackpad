@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Story - ReIgnitia</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+    
+    <meta name="description" content="The story behind ReIgnitia - why students need a mission control for learning, funding, and growth.">
+</head>
+<body data-page="story">
+    
+    <!-- Starfield Background -->
+    <div class="starfield-background" id="starfieldBg"></div>
+    
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <canvas id="meteors-canvas"></canvas>
+        
+        <!-- Header -->
+        <header class="header">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo/reignitia_flame_lightbulb.png" alt="ReIgnitia Logo" class="logo-icon">
+                    <span class="logo-text">Re<span class="logo-highlight">I</span>gnitia</span>
+                </a>
+                <a href="/dashboard/" class="nav-cta">Mission Control</a>
+            </nav>
+        </header>
+
+        <!-- Story Content -->
+        <main class="story-main">
+            
+            <!-- Section 1: The Silent Emergency -->
+            <section class="story-section section-emergency" id="section-emergency">
+                <div class="story-content">
+                    <h2 class="story-heading">The Silent Emergency</h2>
+                    <p class="story-text">Seven hundred million students wake up every morning. Many will not read a simple text by age ten. This is not a future threat. It is happening now.</p>
+                    <p class="story-text">The world has 1.5 billion learners. Most live without internet, books, or teachers trained in STEM fields. They have talent. They lack a path.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="globe-placeholder">Earth visualization</div>
+                </div>
+            </section>
+
+            <!-- Section 2: Learning Poverty -->
+            <section class="story-section section-poverty" id="section-poverty">
+                <div class="story-content">
+                    <h2 class="story-heading">Learning Poverty</h2>
+                    <p class="story-text">In 2019, 57% of children in low-income countries could not read or understand a basic story. By 2022, that number jumped to 70%.</p>
+                    <p class="story-text">COVID-19 closed schools. Learning stopped for months. Students fell behind. The gap widened. Poor countries lost years of progress.</p>
+                    <div class="stat-box">
+                        <div class="stat-number">70%</div>
+                        <div class="stat-label">of 10-year-olds in learning poverty</div>
+                        <div class="stat-source">World Bank, 2022</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Connectivity Gap -->
+            <section class="story-section section-connectivity" id="section-connectivity">
+                <div class="story-content">
+                    <h2 class="story-heading">Connectivity and Device Gap</h2>
+                    <p class="story-text">2.9 billion people have no internet access at home. Of those, 1.3 billion are students. They cannot watch Khan Academy. They cannot join freeCodeCamp. They are locked out.</p>
+                    <p class="story-text">Even where internet exists, data costs money. Devices break. Families share one phone. Students study at midnight when bandwidth is cheaper.</p>
+                    <div class="stat-box">
+                        <div class="stat-number">1.3 billion</div>
+                        <div class="stat-label">students without home internet</div>
+                        <div class="stat-source">UNICEF, 2020</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: Money Barrier -->
+            <section class="story-section section-money" id="section-money">
+                <div class="story-content">
+                    <h2 class="story-heading">Money Barrier</h2>
+                    <p class="story-text">A student in India needs 500,000 rupees per year for engineering college. That is more than most families earn. Scholarships exist. Students do not know where to find them.</p>
+                    <p class="story-text">Google offers scholarships. DAAD funds international study. Breakthrough Junior Challenge gives $250,000 for a three-minute video. Information is scattered across 500 websites. No one has time to search.</p>
+                </div>
+            </section>
+
+            <!-- Section 5: Mental Health Crisis -->
+            <section class="story-section section-mental" id="section-mental">
+                <div class="story-content">
+                    <h2 class="story-heading">Mental Health and Burnout</h2>
+                    <p class="story-text">Exam pressure builds. Family expectations weigh heavy. Friends compete. Students feel isolated. Therapy is expensive. Stigma is real. Burnout spreads silently.</p>
+                    <p class="story-text">Small tools help. Breathing exercises take two minutes. Grounding techniques cost nothing. Students need accessible ways to pause, reset, and keep going.</p>
+                </div>
+            </section>
+
+            <!-- Section 6: Time Chaos -->
+            <section class="story-section section-time" id="section-time">
+                <div class="story-content">
+                    <h2 class="story-heading">Time Chaos</h2>
+                    <p class="story-text">Notifications interrupt every five minutes. YouTube autoplay never stops. Students open ten tabs and finish none. Hours vanish. Deadlines arrive. Panic sets in.</p>
+                    <p class="story-text">Structured focus blocks work. Pomodoro timers help. Tracking small wins builds momentum. Students need systems, not willpower.</p>
+                </div>
+            </section>
+
+            <!-- Section 7: Opportunity Desert -->
+            <section class="story-section section-opportunity" id="section-opportunity">
+                <div class="story-content">
+                    <h2 class="story-heading">Opportunity Desert</h2>
+                    <p class="story-text">NASA Space Apps Challenge happens every October. Regeneron ISEF accepts projects from 80 countries. Breakthrough Junior Challenge closes in June. Students hear about these contests one week after the deadline.</p>
+                    <p class="story-text">Talent exists everywhere. Opportunities do not reach everywhere. The gap costs dreams.</p>
+                </div>
+            </section>
+
+            <!-- Section 8: Scattered Tools -->
+            <section class="story-section section-tools" id="section-tools">
+                <div class="story-content">
+                    <h2 class="story-heading">Existing Tools Are Scattered</h2>
+                    <p class="story-text">roadmap.sh shows learning paths. Khan Academy teaches math. freeCodeCamp builds coding skills. MIT OCW offers free courses. Each tool is powerful. Together, they overwhelm.</p>
+                    <p class="story-text">Students jump between 15 websites. They forget passwords. They lose progress. They give up. The problem is not the tools. The problem is the chaos.</p>
+                </div>
+            </section>
+
+            <!-- Section 9: Enter ReIgnitia -->
+            <section class="story-section section-reignitia" id="section-reignitia">
+                <div class="story-content">
+                    <h2 class="story-heading">Enter ReIgnitia</h2>
+                    <p class="story-text">Instead of one more app, we built a mission control. ReIgnitia orbits around the student. It connects roadmaps, scholarships, wellbeing tools, focus timers, opportunities, and communities in one place.</p>
+                    <p class="story-text">No login. No cost. No data tracking. Everything runs in your browser. Your progress stays on your device. The tools are free forever.</p>
+                    <div class="reignitia-orb">
+                        <img src="/assets/images/logo/reignitia_flame_lightbulb.png" alt="ReIgnitia Orb" class="orb-image">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: Labs Overview -->
+            <section class="story-section section-labs" id="section-labs">
+                <div class="story-content">
+                    <h2 class="story-heading">Six Labs, One Orbit</h2>
+                    <div class="labs-grid">
+                        <div class="lab-card">
+                            <h3>Learn Orbits</h3>
+                            <p>Roadmaps for astrophysics, CS, AI, and research using only free resources.</p>
+                        </div>
+                        <div class="lab-card">
+                            <h3>Money Lab</h3>
+                            <p>Find scholarships in India and globally. Plan costs with real numbers.</p>
+                        </div>
+                        <div class="lab-card">
+                            <h3>Wellbeing Observatory</h3>
+                            <p>Quick breathing, grounding, and mood tools. Two minutes. No therapy.</p>
+                        </div>
+                        <div class="lab-card">
+                            <h3>Time Focus Station</h3>
+                            <p>Focus timers with Pomodoro and exam sprint presets. Track your wins.</p>
+                        </div>
+                        <div class="lab-card">
+                            <h3>Opportunity Radar</h3>
+                            <p>Discover NASA Space Apps, ISEF, and global STEM contests before deadlines.</p>
+                        </div>
+                        <div class="lab-card">
+                            <h3>Peer Dock</h3>
+                            <p>Connect with freeCodeCamp, OSSU CS, AoPS, and Physics Stack Exchange.</p>
+                        </div>
+                    </div>
+                    <a href="/dashboard/" class="story-cta">Enter Mission Control</a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="/js/app.js" defer></script>
+</body>
+</html>
