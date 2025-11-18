@@ -4,45 +4,684 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <title>Learn Orbits - ReIgnitia</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Learn Orbits - ReIgnitia Lab</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="/css/main.css">
+    
+    <meta name="description" content="Learn Orbits Lab - Interactive roadmaps for astrophysics, CS, AI, and research using only free resources.">
+    
+    <style>
+        /* Learn Orbits Lab Specific Styles */
+        .lab-main {
+            max-width: 1400px;
+            margin: 80px auto 0;
+            padding: 40px 20px;
+        }
+        
+        .lab-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .lab-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #4a90e2 0%, #50c8f0 50%, #ff8c42 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .lab-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .lab-body {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        
+        @media (max-width: 992px) {
+            .lab-body {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Sidebar */
+        .lab-sidebar {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        
+        .track-selector {
+            margin-bottom: 24px;
+        }
+        
+        .track-selector label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #50c8f0;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .track-selector select {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .track-selector select:focus {
+            outline: none;
+            border-color: #50c8f0;
+            box-shadow: 0 0 0 3px rgba(80, 200, 240, 0.1);
+        }
+        
+        .track-info {
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border-left: 3px solid #ff8c42;
+        }
+        
+        .track-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+        
+        .track-info p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #e0e0e0;
+            margin-bottom: 12px;
+        }
+        
+        .track-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .track-stat span {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .track-stat strong {
+            color: #50c8f0;
+            font-weight: 600;
+        }
+        
+        /* Orbit Section */
+        .lab-orbit {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 32px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+        }
+        
+        #orbitDiagram {
+            flex-shrink: 0;
+        }
+        
+        .orbit-circle {
+            fill: none;
+            stroke: rgba(80, 200, 240, 0.2);
+            stroke-width: 2;
+        }
+        
+        .orbit-node {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .orbit-node circle {
+            transition: all 0.3s ease;
+        }
+        
+        .orbit-node.incomplete circle {
+            fill: rgba(255, 255, 255, 0.1);
+            stroke: #50c8f0;
+            stroke-width: 2;
+        }
+        
+        .orbit-node.completed circle {
+            fill: #4a90e2;
+            stroke: #50c8f0;
+            stroke-width: 3;
+        }
+        
+        .orbit-node.selected circle {
+            fill: #ff8c42;
+            stroke: #ffa726;
+            stroke-width: 4;
+            filter: drop-shadow(0 0 8px rgba(255, 140, 66, 0.6));
+        }
+        
+        .orbit-node:hover circle {
+            fill: #50c8f0;
+            transform: scale(1.2);
+        }
+        
+        .orbit-node text {
+            fill: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            text-anchor: middle;
+            pointer-events: none;
+        }
+        
+        /* Step Details */
+        .step-details {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .step-details.empty {
+            text-align: center;
+            color: #888;
+            padding: 48px 24px;
+        }
+        
+        .step-details h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        
+        .step-details p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #e0e0e0;
+            margin-bottom: 16px;
+        }
+        
+        .step-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .meta-label {
+            color: #888;
+            font-weight: 600;
+        }
+        
+        .meta-value {
+            color: #50c8f0;
+        }
+        
+        .step-skills {
+            margin-bottom: 20px;
+        }
+        
+        .step-skills h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #50c8f0;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            padding: 6px 12px;
+            background: rgba(74, 144, 226, 0.2);
+            border: 1px solid rgba(74, 144, 226, 0.4);
+            border-radius: 6px;
+            font-size: 13px;
+            color: #50c8f0;
+        }
+        
+        .step-resources {
+            margin-bottom: 20px;
+        }
+        
+        .step-resources h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ff8c42;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .resource-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .resource-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            background: rgba(74, 144, 226, 0.2);
+            border-color: #50c8f0;
+            transform: translateX(4px);
+        }
+        
+        .resource-link::before {
+            content: '🔗';
+            font-size: 16px;
+        }
+        
+        .step-actions {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn-complete {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #4a90e2 0%, #50c8f0 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-complete:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.4);
+        }
+        
+        .btn-complete.completed {
+            background: linear-gradient(135deg, #26a69a 0%, #4caf50 100%);
+        }
+        
+        .btn-complete.completed::before {
+            content: '✓ ';
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .orbit-node circle,
+            .resource-link,
+            .btn-complete {
+                transition: none;
+            }
+        }
+    </style>
 </head>
 <body data-page="lab-learn-orbits">
-    <div class="starfield-background"></div>
+    
+    <!-- Starfield Background -->
+    <div class="starfield-background" id="starfieldBg"></div>
+    
+    <!-- Main Wrapper -->
     <div class="main-wrapper">
+        <canvas id="meteors-canvas"></canvas>
+        
+        <!-- Header -->
         <header class="header">
             <nav class="nav">
                 <a href="/" class="logo">
-                    <img src="/assets/images/logo/reignitia_flame_lightbulb.png" alt="ReIgnitia" class="logo-icon">
+                    <img src="/assets/images/logo/reignitia_flame_lightbulb.png" alt="ReIgnitia Logo" class="logo-icon">
                     <span class="logo-text">Re<span class="logo-highlight">I</span>gnitia</span>
                 </a>
                 <a href="/dashboard/" class="nav-link">Dashboard</a>
             </nav>
         </header>
+
+        <!-- Lab Content -->
         <main class="lab-main">
             <div class="lab-header">
-                <h1 class="lab-title">🛰️ Learn Orbits</h1>
-                <p class="lab-subtitle">Learning roadmaps for STEM using only free resources.</p>
+                <h1 class="lab-title">Learn Orbits</h1>
+                <p class="lab-description">
+                    Pick a track. View the orbit. Click each node to see step details. Mark steps complete as you finish them. Your progress saves in your browser. All resources are free.
+                </p>
             </div>
-            <div class="lab-content">
-                <div class="lab-sidebar">
-                    <h2>Select Track</h2>
-                    <div id="trackSelector" class="track-list"></div>
-                    <div id="trackInfo" class="track-info"></div>
-                </div>
-                <div class="lab-workspace">
-                    <div id="orbitDiagram" class="orbit-diagram"></div>
-                    <div id="stepDetails" class="step-details">
-                        <p class="placeholder-text">Select a node on the orbit to view step details.</p>
+            
+            <div class="lab-body">
+                <!-- Sidebar -->
+                <aside class="lab-sidebar">
+                    <div class="track-selector">
+                        <label for="trackSelect">Select Your Track:</label>
+                        <select id="trackSelect">
+                            <option value="">Loading tracks...</option>
+                        </select>
                     </div>
-                </div>
+                    <div class="track-info" id="trackInfo" style="display: none;">
+                        <h3 id="trackTitle"></h3>
+                        <p id="trackSummary"></p>
+                        <div class="track-stat">
+                            <span>Estimated Time:</span>
+                            <strong id="trackTime"></strong>
+                        </div>
+                        <div class="track-stat">
+                            <span>Progress:</span>
+                            <strong id="trackProgress">0%</strong>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Orbit Visualization & Details -->
+                <section class="lab-orbit">
+                    <svg id="orbitDiagram" xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+                        <circle class="orbit-circle" cx="200" cy="200" r="150" />
+                    </svg>
+                    
+                    <div class="step-details empty" id="stepDetails">
+                        <p>Select a track from the sidebar to begin. Then click any node on the orbit to view step details.</p>
+                    </div>
+                </section>
             </div>
         </main>
     </div>
+
+    <!-- Main JavaScript -->
     <script src="/js/app.js" defer></script>
+    
+    <!-- Learn Orbits Lab JavaScript -->
+    <script>
+        // Learn Orbits Lab Logic
+        (function() {
+            'use strict';
+            
+            let roadmapsData = [];
+            let currentTrack = null;
+            let selectedStepIndex = null;
+            const STORAGE_KEY = 'reignitia_learn_orbits_progress';
+            
+            // Load roadmaps data
+            async function loadRoadmapsData() {
+                try {
+                    const response = await fetch('/assets/data/learn_orbits/roadmaps.json');
+                    roadmapsData = await response.json();
+                    populateTrackSelector();
+                } catch (error) {
+                    console.error('Error loading roadmaps data:', error);
+                    document.getElementById('trackSelect').innerHTML = '<option value="">Error loading tracks</option>';
+                }
+            }
+            
+            // Populate track selector dropdown
+            function populateTrackSelector() {
+                const select = document.getElementById('trackSelect');
+                select.innerHTML = '<option value="">Choose a track...</option>';
+                
+                roadmapsData.forEach((track, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = track.title;
+                    select.appendChild(option);
+                });
+                
+                select.addEventListener('change', handleTrackChange);
+            }
+            
+            // Handle track selection
+            function handleTrackChange(event) {
+                const trackIndex = parseInt(event.target.value);
+                if (isNaN(trackIndex)) {
+                    currentTrack = null;
+                    document.getElementById('trackInfo').style.display = 'none';
+                    clearOrbit();
+                    clearStepDetails();
+                    return;
+                }
+                
+                currentTrack = roadmapsData[trackIndex];
+                displayTrackInfo();
+                renderOrbit();
+                clearStepDetails();
+            }
+            
+            // Display track info
+            function displayTrackInfo() {
+                if (!currentTrack) return;
+                
+                document.getElementById('trackInfo').style.display = 'block';
+                document.getElementById('trackTitle').textContent = currentTrack.title;
+                document.getElementById('trackSummary').textContent = currentTrack.summary;
+                document.getElementById('trackTime').textContent = currentTrack.estimated_weeks + ' weeks';
+                
+                updateProgress();
+            }
+            
+            // Update progress percentage
+            function updateProgress() {
+                if (!currentTrack) return;
+                
+                const progress = getProgress();
+                const completed = currentTrack.steps.filter(step => progress[step.id]).length;
+                const total = currentTrack.steps.length;
+                const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+                
+                document.getElementById('trackProgress').textContent = percentage + '%';
+            }
+            
+            // Render orbit diagram
+            function renderOrbit() {
+                if (!currentTrack) return;
+                
+                const svg = document.getElementById('orbitDiagram');
+                const nodes = svg.querySelectorAll('.orbit-node');
+                nodes.forEach(node => node.remove());
+                
+                const centerX = 200;
+                const centerY = 200;
+                const radius = 150;
+                const steps = currentTrack.steps;
+                const angleStep = (2 * Math.PI) / steps.length;
+                
+                const progress = getProgress();
+                
+                steps.forEach((step, index) => {
+                    const angle = angleStep * index - (Math.PI / 2);
+                    const x = centerX + radius * Math.cos(angle);
+                    const y = centerY + radius * Math.sin(angle);
+                    
+                    const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+                    group.classList.add('orbit-node');
+                    if (progress[step.id]) {
+                        group.classList.add('completed');
+                    } else {
+                        group.classList.add('incomplete');
+                    }
+                    group.dataset.stepIndex = index;
+                    
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', x);
+                    circle.setAttribute('cy', y);
+                    circle.setAttribute('r', 12);
+                    
+                    const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+                    text.setAttribute('x', x);
+                    text.setAttribute('y', y + 4);
+                    text.textContent = index + 1;
+                    
+                    group.appendChild(circle);
+                    group.appendChild(text);
+                    svg.appendChild(group);
+                    
+                    group.addEventListener('click', () => selectStep(index));
+                });
+            }
+            
+            // Select and display step
+            function selectStep(index) {
+                if (!currentTrack) return;
+                
+                selectedStepIndex = index;
+                const step = currentTrack.steps[index];
+                
+                // Update node selection visually
+                const nodes = document.querySelectorAll('.orbit-node');
+                nodes.forEach(node => node.classList.remove('selected'));
+                nodes[index].classList.add('selected');
+                
+                // Display step details
+                displayStepDetails(step, index);
+            }
+            
+            // Display step details
+            function displayStepDetails(step, index) {
+                const detailsDiv = document.getElementById('stepDetails');
+                detailsDiv.classList.remove('empty');
+                
+                const progress = getProgress();
+                const isCompleted = progress[step.id] || false;
+                
+                detailsDiv.innerHTML = `
+                    <h3>Step ${index + 1}: ${step.title}</h3>
+                    <p>${step.description}</p>
+                    
+                    <div class="step-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Duration:</span>
+                            <span class="meta-value">${step.estimated_weeks} weeks</span>
+                        </div>
+                    </div>
+                    
+                    <div class="step-skills">
+                        <h4>Skills You Will Learn:</h4>
+                        <div class="skills-list">
+                            ${step.skills.map(skill => `<span class="skill-tag">${skill}</span>`).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="step-resources">
+                        <h4>Free Resources:</h4>
+                        <div class="resource-list">
+                            ${step.resources.map(resource => `
+                                <a href="${resource.url}" target="_blank" rel="noopener noreferrer" class="resource-link">
+                                    ${resource.title}
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn-complete ${isCompleted ? 'completed' : ''}" id="btnToggleComplete">
+                            ${isCompleted ? 'Completed' : 'Mark as Complete'}
+                        </button>
+                    </div>
+                `;
+                
+                document.getElementById('btnToggleComplete').addEventListener('click', toggleStepCompletion);
+            }
+            
+            // Toggle step completion
+            function toggleStepCompletion() {
+                if (!currentTrack || selectedStepIndex === null) return;
+                
+                const step = currentTrack.steps[selectedStepIndex];
+                const progress = getProgress();
+                progress[step.id] = !progress[step.id];
+                saveProgress(progress);
+                
+                renderOrbit();
+                displayStepDetails(step, selectedStepIndex);
+                updateProgress();
+            }
+            
+            // Get progress from localStorage
+            function getProgress() {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                return stored ? JSON.parse(stored) : {};
+            }
+            
+            // Save progress to localStorage
+            function saveProgress(progress) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+            }
+            
+            // Clear orbit
+            function clearOrbit() {
+                const svg = document.getElementById('orbitDiagram');
+                const nodes = svg.querySelectorAll('.orbit-node');
+                nodes.forEach(node => node.remove());
+            }
+            
+            // Clear step details
+            function clearStepDetails() {
+                const detailsDiv = document.getElementById('stepDetails');
+                detailsDiv.classList.add('empty');
+                detailsDiv.innerHTML = '<p>Select a track from the sidebar to begin. Then click any node on the orbit to view step details.</p>';
+                selectedStepIndex = null;
+            }
+            
+            // Initialize on page load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadRoadmapsData);
+            } else {
+                loadRoadmapsData();
+            }
+        })();
+    </script>
 </body>
 </html>
