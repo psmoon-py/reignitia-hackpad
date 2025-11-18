@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <title>Wellbeing Observatory - ReIgnitia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body data-page="lab-wellbeing">
+    <div class="starfield-background"></div>
+    <div class="main-wrapper">
+        <header class="header">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo/reignitia_flame_lightbulb.png" alt="ReIgnitia" class="logo-icon">
+                    <span class="logo-text">Re<span class="logo-highlight">I</span>gnitia</span>
+                </a>
+                <a href="/dashboard/" class="nav-link">Dashboard</a>
+            </nav>
+        </header>
+        <main class="lab-main">
+            <div class="lab-header">
+                <h1 class="lab-title">🧘 Wellbeing Observatory</h1>
+                <p class="lab-subtitle">Quick mental health tools for students under stress. Not therapy.</p>
+            </div>
+            <div class="lab-content">
+                <div class="mood-selector">
+                    <h2>How do you feel right now?</h2>
+                    <div class="mood-chips">
+                        <button class="mood-chip" data-mood="calm">Calm</button>
+                        <button class="mood-chip" data-mood="anxious">Anxious</button>
+                        <button class="mood-chip" data-mood="overwhelmed">Overwhelmed</button>
+                        <button class="mood-chip" data-mood="tired">Tired</button>
+                        <button class="mood-chip" data-mood="okay">Okay</button>
+                    </div>
+                </div>
+                <div id="exerciseList" class="exercise-list"></div>
+            </div>
+            <div id="exerciseModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <button class="modal-close">&times;</button>
+                    <div id="exerciseDetails"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="/js/app.js" defer></script>
+</body>
+</html>
