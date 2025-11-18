@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <title>Dashboard - ReIgnitia Mission Control</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <meta name="description" content="ReIgnitia Mission Control - Access all six labs for learning, funding, wellbeing, focus, opportunities, and community.">
+</head>
+<body data-page="dashboard">
+    
+    <!-- Starfield Background -->
+    <div class="starfield-background" id="starfieldBg"></div>
+    
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <canvas id="meteors-canvas"></canvas>
+        
+        <!-- Header -->
+        <header class="header">
+            <nav class="nav">
+                <a href="/" class="logo">
+                    <img src="/assets/images/logo/reignitia_flame_lightbulb.png" alt="ReIgnitia Logo" class="logo-icon">
+                    <span class="logo-text">Re<span class="logo-highlight">I</span>gnitia</span>
+                </a>
+                <a href="/story/" class="nav-link">Story</a>
+            </nav>
+        </header>
+
+        <!-- Dashboard Content -->
+        <main class="dashboard-main">
+            
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Mission Control</h1>
+                <p class="dashboard-subtitle">Start where it hurts the most: time, money, path, or wellbeing.</p>
+            </div>
+
+            <div class="labs-container">
+                
+                <!-- Lab 1: Learn Orbits -->
+                <div class="lab-panel" data-lab="learn-orbits">
+                    <div class="lab-icon">🛰️</div>
+                    <div class="lab-info">
+                        <h2 class="lab-title">Learn Orbits</h2>
+                        <p class="lab-description">Learning paths and roadmaps for STEM fields using free resources.</p>
+                        <div class="lab-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Inputs:</span>
+                                <span class="spec-value">Track selection, step completion</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Outputs:</span>
+                                <span class="spec-value">Visual roadmap, progress tracking</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Ideal for:</span>
+                                <span class="spec-value">Students building skills in astrophysics, CS, AI, research</span>
+                            </div>
+                        </div>
+                        <div class="lab-badges">
+                            <span class="badge">FREE</span>
+                            <span class="badge">NO LOGIN</span>
+                            <span class="badge">LOCAL DATA</span>
+                        </div>
+                    </div>
+                    <a href="/labs/learn-orbits/" class="lab-launch">Launch Lab</a>
+                </div>
+
+                <!-- Lab 2: Money Lab -->
+                <div class="lab-panel" data-lab="money-lab">
+                    <div class="lab-icon">💰</div>
+                    <div class="lab-info">
+                        <h2 class="lab-title">Money Lab</h2>
+                        <p class="lab-description">Scholarship finder and cost-of-study calculator with real data.</p>
+                        <div class="lab-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Inputs:</span>
+                                <span class="spec-value">Country, level, field, need/merit filters</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Outputs:</span>
+                                <span class="spec-value">Scholarship matches, cost breakdown, budget total</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Ideal for:</span>
+                                <span class="spec-value">Students planning college budgets and finding funding</span>
+                            </div>
+                        </div>
+                        <div class="lab-badges">
+                            <span class="badge">FREE</span>
+                            <span class="badge">NO LOGIN</span>
+                            <span class="badge">VERIFIED DATA</span>
+                        </div>
+                    </div>
+                    <a href="/labs/money-lab/" class="lab-launch">Launch Lab</a>
+                </div>
+
+                <!-- Lab 3: Wellbeing Observatory -->
+                <div class="lab-panel" data-lab="wellbeing">
+                    <div class="lab-icon">🧘</div>
+                    <div class="lab-info">
+                        <h2 class="lab-title">Wellbeing Observatory</h2>
+                        <p class="lab-description">Quick mental health micro-tools for stressed students.</p>
+                        <div class="lab-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Inputs:</span>
+                                <span class="spec-value">Current mood selection</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Outputs:</span>
+                                <span class="spec-value">Breathing exercises, grounding techniques, journaling prompts</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Ideal for:</span>
+                                <span class="spec-value">Students under exam pressure or feeling overwhelmed</span>
+                            </div>
+                        </div>
+                        <div class="lab-badges">
+                            <span class="badge">FREE</span>
+                            <span class="badge">2-MIN TOOLS</span>
+                            <span class="badge">NO THERAPY</span>
+                        </div>
+                    </div>
+                    <a href="/labs/wellbeing-observatory/" class="lab-launch">Launch Lab</a>
+                </div>
+
+                <!-- Lab 4: Time Focus Station -->
+                <div class="lab-panel" data-lab="time-focus">
+                    <div class="lab-icon">⏱️</div>
+                    <div class="lab-info">
+                        <h2 class="lab-title">Time Focus Station</h2>
+                        <p class="lab-description">Focus timer with research-backed presets and progress tracking.</p>
+                        <div class="lab-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Inputs:</span>
+                                <span class="spec-value">Preset selection (Pomodoro, exam sprint, gentle start)</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Outputs:</span>
+                                <span class="spec-value">Countdown timer, session log, daily block count</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Ideal for:</span>
+                                <span class="spec-value">Students building focus habits and managing study sessions</span>
+                            </div>
+                        </div>
+                        <div class="lab-badges">
+                            <span class="badge">FREE</span>
+                            <span class="badge">NO LOGIN</span>
+                            <span class="badge">LOCAL TRACKING</span>
+                        </div>
+                    </div>
+                    <a href="/labs/time-focus-station/" class="lab-launch">Launch Lab</a>
+                </div>
+
+                <!-- Lab 5: Opportunity Radar -->
+                <div class="lab-panel" data-lab="opportunity">
+                    <div class="lab-icon">🎯</div>
+                    <div class="lab-info">
+                        <h2 class="lab-title">Opportunity Radar</h2>
+                        <p class="lab-description">Discover STEM competitions, hackathons, and fairs before deadlines.</p>
+                        <div class="lab-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Inputs:</span>
+                                <span class="spec-value">Level, field, region, cost filters</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Outputs:</span>
+                                <span class="spec-value">Opportunity cards with names, dates, links, and eligibility</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Ideal for:</span>
+                                <span class="spec-value">Students seeking contests like NASA Space Apps, ISEF, Breakthrough</span>
+                            </div>
+                        </div>
+                        <div class="lab-badges">
+                            <span class="badge">FREE</span>
+                            <span class="badge">GLOBAL</span>
+                            <span class="badge">VERIFIED LINKS</span>
+                        </div>
+                    </div>
+                    <a href="/labs/opportunity-radar/" class="lab-launch">Launch Lab</a>
+                </div>
+
+                <!-- Lab 6: Peer Dock -->
+                <div class="lab-panel" data-lab="peer-dock">
+                    <div class="lab-icon">👥</div>
+                    <div class="lab-info">
+                        <h2 class="lab-title">Peer Dock</h2>
+                        <p class="lab-description">Curated free communities for learning and collaboration.</p>
+                        <div class="lab-specs">
+                            <div class="spec-item">
+                                <span class="spec-label">Inputs:</span>
+                                <span class="spec-value">Focus area filters (CS, Math, Physics, STEM, Olympiad)</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Outputs:</span>
+                                <span class="spec-value">Community cards with platforms, descriptions, and links</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Ideal for:</span>
+                                <span class="spec-value">Students connecting with freeCodeCamp, OSSU, AoPS, Stack Exchange</span>
+                            </div>
+                        </div>
+                        <div class="lab-badges">
+                            <span class="badge">FREE</span>
+                            <span class="badge">NO SIGNUP</span>
+                            <span class="badge">CURATED</span>
+                        </div>
+                    </div>
+                    <a href="/labs/peer-dock/" class="lab-launch">Launch Lab</a>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Main JavaScript -->
+    <script src="/js/app.js" defer></script>
+</body>
+</html>
