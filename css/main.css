@@ -1,0 +1,374 @@
+/* ==========================================
+   REIGNITIA - MAIN STYLESHEET
+   Mission Control for Students
+   ========================================== */
+
+/* ===== CSS RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== CSS VARIABLES ===== */
+:root {
+    /* Colors - Flame & Space Theme */
+    --color-space-black: #0a0e27;
+    --color-deep-navy: #0f1729;
+    --color-cool-blue: #4a90e2;
+    --color-cyan: #50c8f0;
+    --color-warm-orange: #ff8c42;
+    --color-amber: #ffa726;
+    --color-teal: #26a69a;
+    --color-off-white: #f5f5f5;
+    --color-light-gray: #e0e0e0;
+    --color-gray: #888888;
+    
+    /* Gradient Colors */
+    --gradient-primary: linear-gradient(135deg, #4a90e2 0%, #50c8f0 50%, #ff8c42 100%);
+    --gradient-secondary: linear-gradient(135deg, #50c8f0 0%, #ffa726 100%);
+    --gradient-glow: radial-gradient(circle at center, rgba(74, 144, 226, 0.2) 0%, transparent 70%);
+    
+    /* Typography */
+    --font-heading: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 24px;
+    --spacing-lg: 32px;
+    --spacing-xl: 48px;
+    --spacing-xxl: 64px;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(74, 144, 226, 0.5);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-blur: blur(10px);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ===== BASE STYLES ===== */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--color-space-black);
+    color: var(--color-off-white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== STARFIELD BACKGROUND ===== */
+.starfield-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-space-black);
+    z-index: -100;
+    overflow: hidden;
+}
+
+.starfield-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 33% 75%, white, transparent),
+        radial-gradient(1px 1px at 70% 35%, white, transparent);
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    animation: starsFloat 200s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes starsFloat {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* ===== MAIN WRAPPER ===== */
+.main-wrapper {
+    position: relative;
+    min-height: 100vh;
+    z-index: 1;
+}
+
+/* ===== METEOR CANVAS ===== */
+#meteors-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: transparent;
+}
+
+/* ===== HEADER ===== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: rgba(10, 14, 39, 0.8);
+    backdrop-filter: var(--glass-blur);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    text-decoration: none;
+    color: var(--color-off-white);
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    transition: opacity var(--transition-fast);
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+.logo-icon {
+    width: 36px;
+    height: 36px;
+    filter: drop-shadow(0 0 8px rgba(74, 144, 226, 0.6));
+}
+
+.logo-text {
+    letter-spacing: -0.5px;
+}
+
+.logo-highlight {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===== HERO SECTION (ROOT PAGE) ===== */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: var(--spacing-xxl) var(--spacing-md);
+    background: var(--gradient-glow);
+}
+
+.hero-content {
+    text-align: center;
+    max-width: 900px;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-logo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto var(--spacing-lg);
+    filter: drop-shadow(0 0 30px rgba(74, 144, 226, 0.8));
+    animation: floatLogo 6s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.hero-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: var(--spacing-md);
+    letter-spacing: -2px;
+}
+
+.hero-heading-line {
+    display: block;
+}
+
+.text-highlight {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.2em;
+}
+
+.hero-tagline {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-cyan);
+}
+
+.hero-description {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.8;
+    color: var(--color-light-gray);
+    margin-bottom: var(--spacing-xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: 18px 36px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.hero-button-primary {
+    background: var(--gradient-primary);
+    color: white;
+    border: 2px solid transparent;
+}
+
+.hero-button-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+}
+
+.hero-button-secondary {
+    background: transparent;
+    color: var(--color-cyan);
+    border: 2px solid var(--color-cyan);
+}
+
+.hero-button-secondary:hover {
+    background: rgba(80, 200, 240, 0.1);
+    border-color: var(--color-warm-orange);
+    color: var(--color-warm-orange);
+    transform: translateY(-2px);
+}
+
+.hero-subtitle {
+    font-size: 14px;
+    color: var(--color-gray);
+    font-style: italic;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    .header {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .logo {
+        font-size: 20px;
+    }
+    
+    .logo-icon {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .hero-section {
+        padding: var(--spacing-xl) var(--spacing-sm);
+    }
+    
+    .hero-logo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .hero-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
